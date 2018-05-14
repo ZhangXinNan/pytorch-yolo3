@@ -1,3 +1,7 @@
+
+'''
+python detect_cpu.py cfg/yolov3.cfg ~/data_public/yolo/yolov3.weights /Users/zhangxin/pic/car.jpg
+'''
 import sys
 import time
 from PIL import Image, ImageDraw
@@ -21,7 +25,7 @@ def detect(cfgfile, weightfile, imgfile):
         namesfile = 'data/coco.names'
     else:
         namesfile = 'data/names'
-    
+
     # use_cuda = 1
     if use_cuda:
         m.cuda()
@@ -46,10 +50,10 @@ def detect_cv2(cfgfile, weightfile, imgfile):
     m.print_network()
     m.load_weights(weightfile)
     print('Loading weights from %s... Done!' % (weightfile))
-
-    if m.num_classes == 20:
+    num_classes = 80 # m.num_classes -> num_classes
+    if num_classes == 20:
         namesfile = 'data/voc.names'
-    elif m.num_classes == 80:
+    elif num_classes == 80:
         namesfile = 'data/coco.names'
     else:
         namesfile = 'data/names'
@@ -113,8 +117,8 @@ if __name__ == '__main__':
         cfgfile = sys.argv[1]
         weightfile = sys.argv[2]
         imgfile = sys.argv[3]
-        detect(cfgfile, weightfile, imgfile)
-        #detect_cv2(cfgfile, weightfile, imgfile)
+        # detect(cfgfile, weightfile, imgfile)
+        detect_cv2(cfgfile, weightfile, imgfile)
         #detect_skimage(cfgfile, weightfile, imgfile)
     else:
         print('Usage: ')
