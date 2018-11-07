@@ -32,7 +32,7 @@ def detect(cfgfile, weightfile, imgfile):
 
     img = Image.open(imgfile).convert('RGB')
     sized = img.resize((m.width, m.height))
-    
+
     for i in range(2):
         start = time.time()
         boxes = do_detect(m, sized, 0.5, 0.4, use_cuda)
@@ -57,7 +57,7 @@ def detect_cv2(cfgfile, weightfile, imgfile):
         namesfile = 'data/coco.names'
     else:
         namesfile = 'data/names'
-    
+
     # use_cuda = 1
     if use_cuda:
         m.cuda()
@@ -65,7 +65,7 @@ def detect_cv2(cfgfile, weightfile, imgfile):
     img = cv2.imread(imgfile)
     sized = cv2.resize(img, (m.width, m.height))
     sized = cv2.cvtColor(sized, cv2.COLOR_BGR2RGB)
-    
+
     for i in range(2):
         start = time.time()
         boxes = do_detect(m, sized, 0.5, 0.4, use_cuda)
@@ -91,14 +91,14 @@ def detect_skimage(cfgfile, weightfile, imgfile):
         namesfile = 'data/coco.names'
     else:
         namesfile = 'data/names'
-    
+
     # use_cuda = 1
     if use_cuda:
         m.cuda()
 
     img = io.imread(imgfile)
     sized = resize(img, (m.width, m.height)) * 255
-    
+
     for i in range(2):
         start = time.time()
         boxes = do_detect(m, sized, 0.5, 0.4, use_cuda)
