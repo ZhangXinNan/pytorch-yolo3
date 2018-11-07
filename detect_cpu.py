@@ -9,8 +9,14 @@ from models.tiny_yolo import TinyYoloNet
 from utils import *
 from darknet import Darknet
 
-use_cuda = 0
+use_cuda = 1
 num_classes = 80 # m.num_classes -> num_classes
+if num_classes == 20:
+    namesfile = 'data/voc.names'
+elif num_classes == 80:
+    namesfile = 'data/coco.names'
+else:
+    namesfile = 'data/names'
 
 def detect(cfgfile, weightfile, imgfile):
     m = Darknet(cfgfile)
@@ -19,14 +25,6 @@ def detect(cfgfile, weightfile, imgfile):
     m.load_weights(weightfile)
     print('Loading weights from %s... Done!' % (weightfile))
 
-    if num_classes == 20:
-        namesfile = 'data/voc.names'
-    elif num_classes == 80:
-        namesfile = 'data/coco.names'
-    else:
-        namesfile = 'data/names'
-
-    # use_cuda = 1
     if use_cuda:
         m.cuda()
 
@@ -51,14 +49,6 @@ def detect_cv2(cfgfile, weightfile, imgfile):
     m.load_weights(weightfile)
     print('Loading weights from %s... Done!' % (weightfile))
     
-    if num_classes == 20:
-        namesfile = 'data/voc.names'
-    elif num_classes == 80:
-        namesfile = 'data/coco.names'
-    else:
-        namesfile = 'data/names'
-
-    # use_cuda = 1
     if use_cuda:
         m.cuda()
 
@@ -86,14 +76,6 @@ def detect_skimage(cfgfile, weightfile, imgfile):
     m.load_weights(weightfile)
     print('Loading weights from %s... Done!' % (weightfile))
 
-    if m.num_classes == 20:
-        namesfile = 'data/voc.names'
-    elif m.num_classes == 80:
-        namesfile = 'data/coco.names'
-    else:
-        namesfile = 'data/names'
-
-    # use_cuda = 1
     if use_cuda:
         m.cuda()
 

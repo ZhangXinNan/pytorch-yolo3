@@ -3,6 +3,7 @@ import os
 import time
 import math
 import torch
+# import torch.round as round
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 from torch.autograd import Variable
@@ -208,10 +209,10 @@ def plot_boxes_cv2(img, boxes, savename=None, class_names=None, color=None):
     height = img.shape[0]
     for i in range(len(boxes)):
         box = boxes[i]
-        x1 = int(round((box[0] - box[2]/2.0) * width))
-        y1 = int(round((box[1] - box[3]/2.0) * height))
-        x2 = int(round((box[0] + box[2]/2.0) * width))
-        y2 = int(round((box[1] + box[3]/2.0) * height))
+        x1 = int(torch.round((box[0] - box[2]/2.0) * width))
+        y1 = int(torch.round((box[1] - box[3]/2.0) * height))
+        x2 = int(torch.round((box[0] + box[2]/2.0) * width))
+        y2 = int(torch.round((box[1] + box[3]/2.0) * height))
 
         if color:
             rgb = color
