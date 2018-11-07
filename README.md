@@ -132,5 +132,5 @@ save plot results to predictions.jpg
 ![predictions](data/predictions.jpg)
 
 
--### Train on COCO
--comming soon ...
+### Train on COCO
+comming soon ...
