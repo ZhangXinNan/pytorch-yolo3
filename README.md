@@ -3,6 +3,7 @@ Convert https://pjreddie.com/darknet/yolo/ into pytorch. Currently this reposito
 
 This python3 version is merged from https://github.com/Swall0w/pytorch-yolo3
 
+Note: python3 is supported on python3 branch.
 ### Todos
 - [x] make detect.py works
 
@@ -131,5 +132,3 @@ save plot results to predictions.jpg
 ```
 ![predictions](data/predictions.jpg)
 
-### Train on COCO
-comming soon ...
