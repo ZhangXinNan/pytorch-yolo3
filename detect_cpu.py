@@ -10,6 +10,7 @@ from utils import *
 from darknet import Darknet
 
 use_cuda = 0
+num_classes = 80 # m.num_classes -> num_classes
 
 def detect(cfgfile, weightfile, imgfile):
     m = Darknet(cfgfile)
@@ -18,7 +19,6 @@ def detect(cfgfile, weightfile, imgfile):
     m.load_weights(weightfile)
     print('Loading weights from %s... Done!' % (weightfile))
 
-    num_classes = 80
     if num_classes == 20:
         namesfile = 'data/voc.names'
     elif num_classes == 80:
@@ -50,7 +50,7 @@ def detect_cv2(cfgfile, weightfile, imgfile):
     m.print_network()
     m.load_weights(weightfile)
     print('Loading weights from %s... Done!' % (weightfile))
-    num_classes = 80 # m.num_classes -> num_classes
+    
     if num_classes == 20:
         namesfile = 'data/voc.names'
     elif num_classes == 80:
@@ -74,6 +74,7 @@ def detect_cv2(cfgfile, weightfile, imgfile):
             print('%s: Predicted in %f seconds.' % (imgfile, (finish-start)))
 
     class_names = load_class_names(namesfile)
+    print(boxes)
     plot_boxes_cv2(img, boxes, savename='predictions.jpg', class_names=class_names)
 
 def detect_skimage(cfgfile, weightfile, imgfile):
