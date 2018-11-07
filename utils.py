@@ -3,7 +3,6 @@ import os
 import time
 import math
 import torch
-# import torch.round as round
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 from torch.autograd import Variable
